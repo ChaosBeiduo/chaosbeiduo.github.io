@@ -128,16 +128,6 @@
         </li>
         
         
-        <li class="menu-item menu-item-repository">
-          <a href="/repository">
-            
-            <i class="icon icon-project"></i>
-            
-            <span class="menu-title">Repository</span>
-          </a>
-        </li>
-        
-        
         <li class="menu-item menu-item-about">
           <a href="/about">
             
@@ -173,6 +163,28 @@
             <div class="content">
                 <p>La vie est ailleus</p>
             </div>
+        </div>
+        <div class="aplayer">
+            <!-- require APlayer -->
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+                <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+                <!-- require MetingJS-->
+                <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script> 
+                <!--网易云-->   
+                <div class="aplayer" 
+                  data-id="7751159556" 
+                  data-server="netease" 
+                  data-type="playlist" 
+                  data-mini="false" 
+                  data-autoplay="true" 
+                  data-list-folded="true"
+                  data-mutex="true"
+                  data-order="random" 
+                  data-loop="all"
+                  data-volume="0.4" 
+                  data-theme="#FADFA3" 
+                  date-preload="auto"> 
+                </div>
         </div>
     </div>
 </div>
@@ -439,9 +451,6 @@
 
     <div class="copyright">
     	
-        <div class="publishby">
-        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
-        </div>
     </div>
 </footer>
   <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
