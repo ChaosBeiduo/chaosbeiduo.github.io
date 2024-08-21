@@ -140,13 +140,13 @@
         <a href="https://github.com/ChaosBeiduo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ChaosBeiduo" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:chaosbeiduo@outlook.com" title="E-Mail → mailto:chaosbeiduo@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
         <a href="https://www.linkedin.com/in/yiwenzhang233/" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;yiwenzhang233&#x2F;" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
       </span>
       <span class="links-of-author-item">
         <a href="https://www.kaggle.com/chaoschako" title="Kaggle → https:&#x2F;&#x2F;www.kaggle.com&#x2F;chaoschako" rel="noopener me" target="_blank"><i class="fa-brands fa-kaggle fa-fw"></i>Kaggle</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaosbeiduo@outlook.com" title="chaosbeiduo@outlook.com → mailto:chaosbeiduo@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>chaosbeiduo@outlook.com</a>
       </span>
   </div>
 
@@ -188,7 +188,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/08/20/AtCoder-AtCoder-Beginner-Contest-367/" class="post-title-link" itemprop="url">[AtCoder]AtCoder Beginner Contest 367</a>
+          <a href="/2024/08/20/AtCoder-AtCoder-Beginner-Contest-367/" class="post-title-link" itemprop="url">[AtCoder] AtCoder Beginner Contest 367</a>
         </h2>
 
         <div class="post-meta-container">
@@ -198,9 +198,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-08-20 10:21:52 / Modified: 17:23:18" itemprop="dateCreated datePublished" datetime="2024-08-20T10:21:52+08:00">2024-08-20</time>
+      <time title="Created: 2024-08-20 10:21:52" itemprop="dateCreated datePublished" datetime="2024-08-20T10:21:52+08:00">2024-08-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-08-21 15:00:15" itemprop="dateModified" datetime="2024-08-21T15:00:15+08:00">2024-08-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -228,12 +234,13 @@
     <div class="post-body" itemprop="articleBody">
           <h2 id="A-Shout-Everyday"><a href="#A-Shout-Everyday" class="headerlink" title="A - Shout Everyday"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc367/tasks/abc367_a">A - Shout Everyday</a></h2><p>In the Kingdom of AtCoder, residents are required to shout their love for takoyaki at <em>A</em> o’clock every day.</p>
 <p>Takahashi, who lives in the Kingdom of AtCoder, goes to bed at <em>B</em> o’clock and wakes up at <em>C</em> o’clock every day (in the 24-hour clock). He can shout his love for takoyaki when he is awake, but cannot when he is asleep. Determine whether he can shout his love for takoyaki every day. Here, a day has 24 hours, and his sleeping time is less than 24 hours.</p>
+<p><strong>Constraints</strong></p>
 <ul>
 <li><code>0 ≤ A, B, C &lt; 24</code></li>
 <li><code>A</code>, <code>B</code>, and <code>C</code> are pairwise different.</li>
 <li>All input values are integers.</li>
 </ul>
-<p><strong>input</strong></p>
+<p><strong>Input</strong></p>
 <p>The input is given from Standard Input in the following format:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A B C</span><br></pre></td></tr></table></figure>
 
@@ -251,6 +258,34 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> b &lt; c:</span><br><span class="line">    <span class="keyword">if</span> a &gt;= b <span class="keyword">and</span> a &lt; c:</span><br><span class="line">        no </span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> b &gt; c:</span><br><span class="line">    <span class="keyword">if</span> a &lt;=c &amp;&amp; a &gt; b:</span><br><span class="line">        no</span><br><span class="line"></span><br><span class="line">yes</span><br></pre></td></tr></table></figure>
 
 <h3 id="Solve"><a href="#Solve" class="headerlink" title="Solve"></a>Solve</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">shout_love</span>(<span class="params">a, b, c</span>):</span><br><span class="line">  <span class="keyword">if</span> b &lt; c:</span><br><span class="line">    <span class="keyword">if</span> a &gt;= b <span class="keyword">and</span> a &lt; c:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;No&#x27;</span></span><br><span class="line">  <span class="keyword">else</span>: <span class="comment"># b &gt; c</span></span><br><span class="line">    <span class="keyword">if</span> a &gt;= b <span class="keyword">or</span> a &lt; c:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;No&#x27;</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">&#x27;Yes&#x27;</span></span><br><span class="line"></span><br><span class="line">a, b, c = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line"><span class="built_in">print</span>(shout_love(a, b, c))</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="B-Cut-0"><a href="#B-Cut-0" class="headerlink" title="B - Cut .0"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc367/tasks/abc367_b">B - Cut .0</a></h2><p>A real number <em>X</em> is given to the third decimal place.</p>
+<p>Print the real number <em>X</em> under the following conditions.</p>
+<ul>
+<li>The decimal part must not have trailing <code>0</code>s.</li>
+<li>There must not be an unnecessary trailing decimal point.</li>
+</ul>
+<p><strong>Constraints</strong></p>
+<ul>
+<li><code>0 ≤ X &lt; 100</code></li>
+<li><em>X</em> is given to the third decimal place.</li>
+</ul>
+<p><strong>Input</strong></p>
+<p>The input is given from Standard Input in the following format:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X</span><br></pre></td></tr></table></figure>
+
+<p><strong>Output</strong></p>
+<p>Output the answer.</p>
+<h3 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h3><p><strong>pseudocode</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">get <span class="built_in">input</span> <span class="keyword">as</span> X</span><br><span class="line">Convert X to a <span class="built_in">list</span> of characters</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cut_zero</span>(<span class="params">X</span>):</span><br><span class="line">	count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(X) &gt; <span class="number">0</span> <span class="keyword">and</span> X[-<span class="number">1</span>] == <span class="string">&#x27;0&#x27;</span>:</span><br><span class="line">        X.pop()</span><br><span class="line">        count++</span><br><span class="line">    <span class="keyword">if</span> count == <span class="number">3</span>:</span><br><span class="line">        X.pop()</span><br><span class="line">    <span class="keyword">return</span> X <span class="keyword">as</span> a string</span><br></pre></td></tr></table></figure>
+
+<h3 id="Solve-1"><a href="#Solve-1" class="headerlink" title="Solve"></a>Solve</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">cut_zero</span>(<span class="params">X</span>):</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(X) &gt; <span class="number">0</span> <span class="keyword">and</span> X[-<span class="number">1</span>] == <span class="string">&#x27;0&#x27;</span>:</span><br><span class="line">        X.pop()</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> count == <span class="number">3</span>:</span><br><span class="line">        X.pop()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(X)</span><br><span class="line"></span><br><span class="line">X = <span class="built_in">list</span>(<span class="built_in">input</span>())</span><br><span class="line"><span class="built_in">print</span>(cut_zero(X))</span><br></pre></td></tr></table></figure>
+
+<p>A simple version:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">cut_zero</span>(<span class="params">X</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">str</span>(<span class="built_in">float</span>(x))</span><br><span class="line"></span><br><span class="line">X = <span class="built_in">list</span>(<span class="built_in">input</span>())</span><br><span class="line"><span class="built_in">print</span>(cut_zero(X))</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -295,7 +330,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/08/20/CUMCM-1-Intro-Prepration/" class="post-title-link" itemprop="url">[CUMCM]#1 Intro & Prepration</a>
+          <a href="/2024/08/20/CUMCM-1-Intro-Prepration/" class="post-title-link" itemprop="url">[CUMCM] #1 Intro & Prepration</a>
         </h2>
 
         <div class="post-meta-container">
@@ -307,7 +342,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2024-08-20 10:17:11 / Modified: 10:19:06" itemprop="dateCreated datePublished" datetime="2024-08-20T10:17:11+08:00">2024-08-20</time>
+      <time title="Created: 2024-08-20 10:17:11 / Modified: 17:27:11" itemprop="dateCreated datePublished" datetime="2024-08-20T10:17:11+08:00">2024-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
