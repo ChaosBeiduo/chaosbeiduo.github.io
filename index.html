@@ -124,13 +124,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
   </nav>
@@ -161,6 +161,97 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/13/Vue-%E5%9C%B0%E5%9D%80%E4%BF%A1%E6%81%AF%E8%AF%86%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="カオスベイド">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CHAOSLAND">
+      <meta itemprop="description" content="Document my own journey like a director.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | CHAOSLAND">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/11/13/Vue-%E5%9C%B0%E5%9D%80%E4%BF%A1%E6%81%AF%E8%AF%86%E5%88%AB/" class="post-title-link" itemprop="url">[Vue] Address Validation</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-11-13 10:55:49 / Modified: 13:14:34" itemprop="dateCreated datePublished" datetime="2024-11-13T10:55:49+08:00">2024-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front-End</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Front-End/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>During my internship, my first task was to develop an address validation component that accepts a name, phone number, and address. </p>
+<p><strong>This component is designed for address recognition in a Chinese context.</strong></p>
+<h3 id="Structure"><a href="#Structure" class="headerlink" title="Structure"></a>Structure</h3><p>The component includes an input field for entering the address information and a button to trigger the verification process.</p>
+<img src="https://raw.githubusercontent.com/ChaosBeiduo/StoreHouse/main/AddressValidation-Input.png" style="zoom:50%;" />
+
+<p>The information will be divided into three sections, as shown in the image below.</p>
+<img src="https://raw.githubusercontent.com/ChaosBeiduo/StoreHouse/main/AddressValidation.png" style="zoom:50%;" />
+
+<p>But how can we make this happen?</p>
+<h3 id="Flow-Chart"><a href="#Flow-Chart" class="headerlink" title="Flow Chart"></a>Flow Chart</h3>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -206,7 +297,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-08-21 15:00:15" itemprop="dateModified" datetime="2024-08-21T15:00:15+08:00">2024-08-21</time>
+      <time title="Modified: 2024-08-23 13:53:05" itemprop="dateModified" datetime="2024-08-23T13:53:05+08:00">2024-08-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -254,10 +345,10 @@
 <li><code>B</code>&lt;<code>C</code>: Takahashi sleeps within the same day, <code>A</code> is not in <code>[B, C)</code></li>
 <li><code>B</code>&gt;<code>C</code>: Takahashi sleeps at midnight, wakes up at <code>C</code> the next day, <code>A</code> is not in <code>[B, 24], [0, C)</code></li>
 </ul>
-<p><strong>pseudocode</strong>:</p>
+<p><strong>Pseudocode</strong>:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> b &lt; c:</span><br><span class="line">    <span class="keyword">if</span> a &gt;= b <span class="keyword">and</span> a &lt; c:</span><br><span class="line">        no </span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> b &gt; c:</span><br><span class="line">    <span class="keyword">if</span> a &lt;=c &amp;&amp; a &gt; b:</span><br><span class="line">        no</span><br><span class="line"></span><br><span class="line">yes</span><br></pre></td></tr></table></figure>
 
-<h3 id="Solve"><a href="#Solve" class="headerlink" title="Solve"></a>Solve</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">shout_love</span>(<span class="params">a, b, c</span>):</span><br><span class="line">  <span class="keyword">if</span> b &lt; c:</span><br><span class="line">    <span class="keyword">if</span> a &gt;= b <span class="keyword">and</span> a &lt; c:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;No&#x27;</span></span><br><span class="line">  <span class="keyword">else</span>: <span class="comment"># b &gt; c</span></span><br><span class="line">    <span class="keyword">if</span> a &gt;= b <span class="keyword">or</span> a &lt; c:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;No&#x27;</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">&#x27;Yes&#x27;</span></span><br><span class="line"></span><br><span class="line">a, b, c = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line"><span class="built_in">print</span>(shout_love(a, b, c))</span><br></pre></td></tr></table></figure>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">shout_love</span>(<span class="params">a, b, c</span>):</span><br><span class="line">  <span class="keyword">if</span> b &lt; c:</span><br><span class="line">    <span class="keyword">if</span> a &gt;= b <span class="keyword">and</span> a &lt; c:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;No&#x27;</span></span><br><span class="line">  <span class="keyword">else</span>: <span class="comment"># b &gt; c</span></span><br><span class="line">    <span class="keyword">if</span> a &gt;= b <span class="keyword">or</span> a &lt; c:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;No&#x27;</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">&#x27;Yes&#x27;</span></span><br><span class="line"></span><br><span class="line">a, b, c = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line"><span class="built_in">print</span>(shout_love(a, b, c))</span><br></pre></td></tr></table></figure>
 
 
 
@@ -278,14 +369,47 @@
 
 <p><strong>Output</strong></p>
 <p>Output the answer.</p>
-<h3 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h3><p><strong>pseudocode</strong></p>
+<h3 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h3><p><strong>Pseudocode</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">get <span class="built_in">input</span> <span class="keyword">as</span> X</span><br><span class="line">Convert X to a <span class="built_in">list</span> of characters</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cut_zero</span>(<span class="params">X</span>):</span><br><span class="line">	count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(X) &gt; <span class="number">0</span> <span class="keyword">and</span> X[-<span class="number">1</span>] == <span class="string">&#x27;0&#x27;</span>:</span><br><span class="line">        X.pop()</span><br><span class="line">        count++</span><br><span class="line">    <span class="keyword">if</span> count == <span class="number">3</span>:</span><br><span class="line">        X.pop()</span><br><span class="line">    <span class="keyword">return</span> X <span class="keyword">as</span> a string</span><br></pre></td></tr></table></figure>
 
-<h3 id="Solve-1"><a href="#Solve-1" class="headerlink" title="Solve"></a>Solve</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">cut_zero</span>(<span class="params">X</span>):</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(X) &gt; <span class="number">0</span> <span class="keyword">and</span> X[-<span class="number">1</span>] == <span class="string">&#x27;0&#x27;</span>:</span><br><span class="line">        X.pop()</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> count == <span class="number">3</span>:</span><br><span class="line">        X.pop()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(X)</span><br><span class="line"></span><br><span class="line">X = <span class="built_in">list</span>(<span class="built_in">input</span>())</span><br><span class="line"><span class="built_in">print</span>(cut_zero(X))</span><br></pre></td></tr></table></figure>
+<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">cut_zero</span>(<span class="params">X</span>):</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(X) &gt; <span class="number">0</span> <span class="keyword">and</span> X[-<span class="number">1</span>] == <span class="string">&#x27;0&#x27;</span>:</span><br><span class="line">        X.pop()</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> count == <span class="number">3</span>:</span><br><span class="line">        X.pop()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(X)</span><br><span class="line"></span><br><span class="line">X = <span class="built_in">list</span>(<span class="built_in">input</span>())</span><br><span class="line"><span class="built_in">print</span>(cut_zero(X))</span><br></pre></td></tr></table></figure>
 
 <p>A simple version:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">cut_zero</span>(<span class="params">X</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">str</span>(<span class="built_in">float</span>(x))</span><br><span class="line"></span><br><span class="line">X = <span class="built_in">list</span>(<span class="built_in">input</span>())</span><br><span class="line"><span class="built_in">print</span>(cut_zero(X))</span><br></pre></td></tr></table></figure>
 
+
+
+<h2 id="C-Enumerate-Sequences"><a href="#C-Enumerate-Sequences" class="headerlink" title="C - Enumerate Sequences"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc367/tasks/abc367_c">C - Enumerate Sequences</a></h2><p>Print all integer sequences of length $N$ that satisfy the following conditions, in ascending lexicographical order.</p>
+<ul>
+<li>The $i$-th element is between 1 and $R_i$, inclusive.</li>
+<li>The sum of all elements is a multiple of $K$.</li>
+</ul>
+<p><strong>Constraints</strong></p>
+<p>All input values are integers.</p>
+<ul>
+<li>$1 \leq N \leq 8$</li>
+<li>$2 \leq K \leq 10$</li>
+<li>$1 \leq R_i \leq 5$</li>
+</ul>
+<p><strong>Input</strong></p>
+<p>The input is given from Standard Input in the following format:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">N K</span><br><span class="line">R1 R2 …… RN</span><br></pre></td></tr></table></figure>
+
+<p><strong>Output</strong></p>
+<p>Print the answer in the following format, where <em>X</em> is the number of sequences to print, the <em>i</em>-th of which is $A_i$&#x3D;($A_{i, 1}$, $A_{i, 2}$,…,$A_{i, N}$):</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A1,1 A1,2 ... A1,N</span><br><span class="line">A2,1 A2,2 ... A2,N</span><br><span class="line">...</span><br><span class="line">AX,1 AX,2 ... AX,N</span><br></pre></td></tr></table></figure>
+
+<h3 id="Analysis-2"><a href="#Analysis-2" class="headerlink" title="Analysis"></a>Analysis</h3><p><u>Generate All Sequences</u>: You need to generate all possible sequences of length N. For each sequence, the i-th element can range from 1 to $R_i$. The total number of possible sequences is $R_1 \times R_2 \times \dots \times R_N$.</p>
+<p><u>Lexicographical Order</u>: The sequences must be printed in lexicographical order, meaning sequences that are “smaller” in dictionary order should come first.</p>
+<p><u>Sum as a Multiple of K</u>: For each generated sequence, you must check whether the sum of its elements is a multiple of K. If not, discard that sequence.</p>
+<p><strong>Pseudocode</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">get N, K, R</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_sequence</span>(<span class="params">N, K, R</span>):</span><br><span class="line">    result = []</span><br><span class="line">    current = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">backtrack</span>(<span class="params">index</span>):</span><br><span class="line">        <span class="keyword">if</span> index == N:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">sum</span>(current) % K == <span class="number">0</span></span><br><span class="line">            	result.append(current)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, R[index+<span class="number">1</span>]):</span><br><span class="line">            currunt.append(i)</span><br><span class="line">            backtrack(index+<span class="number">1</span>)</span><br><span class="line">            currunt.pop()</span><br><span class="line">            </span><br><span class="line">    backtrack(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">generate_sequence(N, K, R)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">generate_sequence</span>(<span class="params">N, K, R</span>):</span><br><span class="line">    result = []</span><br><span class="line">    currunt = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">backtrack</span>(<span class="params">index</span>):</span><br><span class="line">        <span class="keyword">if</span> index == N:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">sum</span>(currunt)%K == <span class="number">0</span>:</span><br><span class="line">                result.append(currunt.copy())</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, R[index]+<span class="number">1</span>):</span><br><span class="line">            currunt.append(i)</span><br><span class="line">            backtrack(index+<span class="number">1</span>)</span><br><span class="line">            currunt.pop()</span><br><span class="line"></span><br><span class="line">    backtrack(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;\n&quot;</span>.join(<span class="string">&quot; &quot;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, row)) <span class="keyword">for</span> row <span class="keyword">in</span> result)</span><br><span class="line"></span><br><span class="line">N, K = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line">R = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split()))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(generate_sequence(N, K, R))</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="D-Pedometer"><a href="#D-Pedometer" class="headerlink" title="D - Pedometer"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc367/tasks/abc367_d">D - Pedometer</a></h2><p>There are <em>N</em> rest areas around a lake.<br>The rest areas are numbered 1, 2, …, <em>N</em> in clockwise order.<br>It takes $A_i$ steps to walk clockwise from rest area i<em>i</em> to rest area <em>i</em>+1 (where rest area <em>N</em>+1 refers to rest area 1).<br>The minimum number of steps required to walk clockwise from rest area s<em>s</em> to rest area t<em>t</em> (s≠t) is a multiple of <em>M</em>.<br>Find the number of possible pairs (<em>s</em>,<em>t</em>).</p>
 
       
     </div>
