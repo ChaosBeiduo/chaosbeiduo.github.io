@@ -170,7 +170,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/13/Vue-%E5%9C%B0%E5%9D%80%E4%BF%A1%E6%81%AF%E8%AF%86%E5%88%AB/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/13/Vue-Address-Validation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -188,7 +188,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/11/13/Vue-%E5%9C%B0%E5%9D%80%E4%BF%A1%E6%81%AF%E8%AF%86%E5%88%AB/" class="post-title-link" itemprop="url">[Vue] Address Validation</a>
+          <a href="/2024/11/13/Vue-Address-Validation/" class="post-title-link" itemprop="url">[Vue] Address Validation</a>
         </h2>
 
         <div class="post-meta-container">
@@ -206,7 +206,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-11-15 13:19:18" itemprop="dateModified" datetime="2024-11-15T13:19:18+08:00">2024-11-15</time>
+      <time title="Modified: 2024-11-15 16:21:54" itemprop="dateModified" datetime="2024-11-15T16:21:54+08:00">2024-11-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -241,9 +241,23 @@
 <img src="https://raw.githubusercontent.com/ChaosBeiduo/StoreHouse/main/AddressValidation.png" style="zoom:50%;" />
 
 <p>But how can we make this happen?</p>
-<h3 id="Flow-Chart"><a href="#Flow-Chart" class="headerlink" title="Flow Chart"></a>Flow Chart</h3><p><img src="https://raw.githubusercontent.com/ChaosBeiduo/StoreHouse/main/AddressValidation-flowchart-1.png"></p>
+<h3 id="Flow-Chart"><a href="#Flow-Chart" class="headerlink" title="Flow Chart"></a>Flow Chart</h3><p><strong>Step 1</strong>: Split the string into three sections: [“name”, “phone”, “address”].</p>
+<p><img src="https://raw.githubusercontent.com/ChaosBeiduo/StoreHouse/main/AddressValidation-flowchart-1.png"></p>
+<p><strong>Step 2</strong>: Split the address string into: [“province”, “city”, “district”, “details”].</p>
 <p><img src="https://raw.githubusercontent.com/ChaosBeiduo/StoreHouse/main/AddressValidation-flowchart-2.png"></p>
+<h2 id="Let’s-Code"><a href="#Let’s-Code" class="headerlink" title="Let’s Code!"></a>Let’s Code!</h2><p>Create an HTML structure to display the content. </p>
+<p>Add a <code>textarea</code> element bound to the variable <code>userInput</code> and a <code>button</code> element with a click event that triggers the <code>parseAddressInfo</code> function.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">textarea</span> </span></span><br><span class="line"><span class="tag">         <span class="attr">type</span>=<span class="string">&quot;textarea&quot;</span> </span></span><br><span class="line"><span class="tag">         <span class="attr">placeholder</span>=<span class="string">&quot;Paste or enter text to automatically detect name, phone number, and address.&quot;</span> </span></span><br><span class="line"><span class="tag">         <span class="attr">v-model</span>=<span class="string">&quot;userInput&quot;</span></span></span><br><span class="line"><span class="tag">     /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;parseAddressInfo&quot;</span>&gt;</span>Validate<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="1-Extract-Basic-Information"><a href="#1-Extract-Basic-Information" class="headerlink" title="1. Extract Basic Information"></a>1. Extract Basic Information</h3><p>Begin the script section using <strong>setup</strong> to define the required variables.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line"></span><br><span class="line">const userInput = ref(&#x27;&#x27;);</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Then, move on to the function section to implement the core logic!</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-Parse-Address-Components"><a href="#2-Parse-Address-Components" class="headerlink" title="2. Parse Address Components"></a>2. Parse Address Components</h3>
       
     </div>
 
