@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Gemma is a family of lightweight, state-of-the-art open models built from research and technology used to create Google Gemini models. Gemma can be further finetuned to suit specific needs.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Gemma-2] Finetuning the Basic Gemma Model Using Lora">
+<meta property="og:url" content="http://example.com/2024/12/02/Gemma-2-Tuning/index.html">
+<meta property="og:site_name" content="CHAOSLAND">
+<meta property="og:description" content="Gemma is a family of lightweight, state-of-the-art open models built from research and technology used to create Google Gemini models. Gemma can be further finetuned to suit specific needs.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-12-02T10:36:51.000Z">
+<meta property="article:modified_time" content="2024-12-03T10:25:18.036Z">
+<meta property="article:author" content="カオスベイド">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2024/12/02/Gemma-2-Tuning/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/12/02/Gemma-2-Tuning/","path":"2024/12/02/Gemma-2-Tuning/","title":"[Gemma-2] Finetuning the Basic Gemma Model Using Lora"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[Gemma-2] Finetuning the Basic Gemma Model Using Lora | CHAOSLAND</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">CHAOSLAND</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">My Odyssey in Programming</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa-solid fa-user-astronaut fa-fw"></i>About</a></li><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa-solid fa-dungeon fa-fw"></i>Home</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa-solid fa-toilet-paper fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa-solid fa-box fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Preparation"><span class="nav-number">1.</span> <span class="nav-text">Preparation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Set-up-Keras"><span class="nav-number">1.1.</span> <span class="nav-text">Set up Keras</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Select-a-backend"><span class="nav-number">1.2.</span> <span class="nav-text">Select a backend</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prepare-dataset"><span class="nav-number">1.3.</span> <span class="nav-text">Prepare dataset</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Create-a-model"><span class="nav-number">2.</span> <span class="nav-text">Create a model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Inference-before-finetuning"><span class="nav-number">2.1.</span> <span class="nav-text">Inference before finetuning</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Finetuning"><span class="nav-number">3.</span> <span class="nav-text">Finetuning</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="カオスベイド"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">カオスベイド</p>
+  <div class="site-description" itemprop="description">Document my own journey like a director.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ChaosBeiduo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ChaosBeiduo" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/yiwenzhang233/" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;yiwenzhang233&#x2F;" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.kaggle.com/chaoschako" title="Kaggle → https:&#x2F;&#x2F;www.kaggle.com&#x2F;chaoschako" rel="noopener me" target="_blank"><i class="fa-brands fa-kaggle fa-fw"></i>Kaggle</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaosbeiduo@outlook.com" title="chaosbeiduo@outlook.com → mailto:chaosbeiduo@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>chaosbeiduo@outlook.com</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/12/02/Gemma-2-Tuning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="カオスベイド">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CHAOSLAND">
+      <meta itemprop="description" content="Document my own journey like a director.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[Gemma-2] Finetuning the Basic Gemma Model Using Lora | CHAOSLAND">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Gemma-2] Finetuning the Basic Gemma Model Using Lora
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-12-02 18:36:51" itemprop="dateCreated datePublished" datetime="2024-12-02T18:36:51+08:00">2024-12-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-12-03 18:25:18" itemprop="dateModified" datetime="2024-12-03T18:25:18+08:00">2024-12-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Large-Language-Models/" itemprop="url" rel="index"><span itemprop="name">Large Language Models</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Gemma is a family of lightweight, state-of-the-art open models built from research and technology used to create Google Gemini models. Gemma can be further finetuned to suit specific needs.</p>
+<span id="more"></span>
+
+<h1 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h1><h2 id="Set-up-Keras"><a href="#Set-up-Keras" class="headerlink" title="Set up Keras"></a>Set up Keras</h2><p><strong>Keras provides a powerful general-purpose deep learning framework, while <code>keras_nlp</code> focuses on NLP tasks.</strong></p>
+<p>When working on natural language processing (NLP), choosing the right tools is key. Keras is a high-level API known for its simplicity and flexibility, supporting a wide range of tasks like image recognition and time-series analysis, making it ideal for general-purpose machine learning.</p>
+<p>On the other hand, <code>keras_nlp</code> extends Keras specifically for NLP, offering optimized models, tokenization tools, and preprocessing utilities tailored for text-based tasks. By focusing on NLP, <code>keras_nlp</code> streamlines the process of handling text data and fine-tuning pre-trained models, boosting efficiency for NLP applications.</p>
+<p>Together, these libraries complement each other, allowing developers to leverage Keras’ broad capabilities alongside the specialized features of <code>keras_nlp</code> for language processing.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">import</span> keras_nlp</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Select-a-backend"><a href="#Select-a-backend" class="headerlink" title="Select a backend"></a>Select a backend</h2><p>Keras is a high-level, multi-framework deep learning API designed for simplicity and ease of use. </p>
+<p><code>XLA_PYTHON_CLIENT_MEM_FRACTION</code>, controls the fraction of GPU memory allocated to the XLA (Accelerated Linear Algebra) backend when running with the JAX backend.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="comment"># Keras 3 lets you choose the backend: TensorFlow, JAX, or PyTorch. </span></span><br><span class="line">os.environ[<span class="string">&quot;KERAS_BACKEND&quot;</span>] = <span class="string">&quot;jax&quot;</span></span><br><span class="line">os.environ[<span class="string">&quot;XLA_PYTHON_CLIENT_MEM_FRACTION&quot;</span>]=<span class="string">&quot;0.9&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Prepare-dataset"><a href="#Prepare-dataset" class="headerlink" title="Prepare dataset"></a>Prepare dataset</h2><p>While Hugging Face offers an easy way to download datasets, the dataset we’re using may not be in the ideal format for fine-tuning. Specifically, we need to reformat the data into a structure where each entry consists of a <em>prompt</em> and a <em>response</em>.</p>
+<ol>
+<li>Load dataset</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datasets <span class="keyword">import</span> load_dataset</span><br><span class="line"></span><br><span class="line">dataset = load_dataset(<span class="string">&quot;facebook/empathetic_dialogues&quot;</span>, trust_remote_code=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(dataset)</span><br></pre></td></tr></table></figure>
+
+<p>The dataset typically comes with three splits: <strong>train</strong>, <strong>test</strong>, and <strong>validation</strong>. For this fine-tuning process, we will focus on the <strong>train</strong> set. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = dataset[<span class="string">&#x27;train&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>After downloading the dataset, we’ll preprocess it to match the required format.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">filtered_data = []</span><br><span class="line">template = <span class="string">&quot;User:\n&#123;prompt&#125;\nModel:\n&#123;utterance&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> data:</span><br><span class="line">    filtered_data.append(template.<span class="built_in">format</span>(prompt=item[<span class="string">&quot;prompt&quot;</span>], utterance=item[<span class="string">&quot;utterance&quot;</span>]))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(filtered_data[:<span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+
+<p>Truncate our data to speed up training.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filtered_data = filtered_data[:<span class="number">2500</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Create-a-model"><a href="#Create-a-model" class="headerlink" title="Create a model"></a>Create a model</h1><p>KerasNLP provides implementations of many popular model architectures. In this notebook, we’ll create a model using <code>GemmaCausalLM</code>, an end-to-end Gemma model designed for causal language modeling. A causal language model predicts the next token based on previous tokens.</p>
+<p>We’ll use the <code>from_preset</code> method to initialize the model.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gemma_lm = keras_nlp.models.GemmaCausalLM.from_preset(<span class="string">&quot;gemma2_instruct_2b_en&quot;</span>)</span><br><span class="line"></span><br><span class="line">gemma_lm.summary()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Inference-before-finetuning"><a href="#Inference-before-finetuning" class="headerlink" title="Inference before finetuning"></a>Inference before finetuning</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">prompt = <span class="string">&quot;All work and no play makes Jack a dull boy&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(gemma_lm.generate(prompt, max_length=<span class="number">50</span>))</span><br></pre></td></tr></table></figure>
+
+<p>We are using the base Gemma 2 model, which means it has not been fine-tuned for any particular task. It has been trained to simply guess the next work on a vast amount of source documents.</p>
+<p>Such a model is not yet a good fit for question answering. It will tend to continue predicting likely words, often continuing the question itself instead as if it was a random snippet of a random document on the web. It can easily get stuck in loops of high probability sequences.</p>
+<p>To make it more useful, we can fine-tune on a question answering dataset. In this notebook, we will use Empathetic Dialogues dataset.</p>
+<h1 id="Finetuning"><a href="#Finetuning" class="headerlink" title="Finetuning"></a>Finetuning</h1><p>We will perform finetuning using <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.09685">Low Rank Adaptation</a> (LoRA). LoRA is a fine-tuning technique which greatly reduces the number of trainable parameters for downstream tasks by freezing the full weights of the model and inserting a smaller number of new trainable weights into the model. Basically LoRA reparameterizes the larger full weight matrices by 2 smaller low-rank matrices AxB to train and this technique makes training much faster and more memory-efficient.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Enable LoRA for the model and set the LoRA rank to 4.</span></span><br><span class="line">gemma_lm.backbone.enable_lora(rank=<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Limit the input sequence length to 256 (to control memory usage).</span></span><br><span class="line">gemma_lm.preprocessor.sequence_length = <span class="number">256</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Use AdamW (a common optimizer for transformer models).</span></span><br><span class="line">optimizer = keras.optimizers.AdamW(</span><br><span class="line">    learning_rate=<span class="number">5e-5</span>,</span><br><span class="line">    weight_decay=<span class="number">0.01</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Exclude layernorm and bias terms from decay.</span></span><br><span class="line">optimizer.exclude_from_weight_decay(var_names=[<span class="string">&quot;bias&quot;</span>, <span class="string">&quot;scale&quot;</span>])</span><br><span class="line"></span><br><span class="line">gemma_lm.<span class="built_in">compile</span>(</span><br><span class="line">    loss=keras.losses.SparseCategoricalCrossentropy(from_logits=<span class="literal">True</span>),</span><br><span class="line">    optimizer=optimizer,</span><br><span class="line">    weighted_metrics=[keras.metrics.SparseCategoricalAccuracy()],</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">gemma_lm.fit(filtered_data, epochs=<span class="number">1</span>, batch_size=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/12/02/Vue-Star-Rating/" rel="prev" title="Vue-Star-Rating">
+                  <i class="fa fa-angle-left"></i> Vue-Star-Rating
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa-solid fa-dice-d20"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">カオスベイド</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/ChaosBeiduo" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
