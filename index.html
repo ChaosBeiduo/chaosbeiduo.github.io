@@ -187,7 +187,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/12/02/Gemma-2-Tuning/" class="post-title-link" itemprop="url">[Gemma-2] Finetuning the Basic Gemma Model Using Lora</a>
+          <a href="/2024/12/02/Gemma-2-Tuning/" class="post-title-link" itemprop="url">[Gemma-2] Fine-Tune Gemma 2 in Keras Using LoRA</a>
         </h2>
 
         <div class="post-meta-container">
@@ -205,7 +205,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-12-03 18:25:18" itemprop="dateModified" datetime="2024-12-03T18:25:18+08:00">2024-12-03</time>
+      <time title="Modified: 2024-12-04 18:07:49" itemprop="dateModified" datetime="2024-12-04T18:07:49+08:00">2024-12-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -227,7 +227,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Gemma is a family of lightweight, state-of-the-art open models built from research and technology used to create Google Gemini models. Gemma can be further finetuned to suit specific needs.</p>
+          <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Gemma is a family of lightweight, state-of-the art open models built from the same research and technology used to create the Gemini models.</p>
+<p>In this notebook, we demonstrate how to use <strong>KerasNLP</strong> to perform <strong>LoRA fine-tuning</strong> on a <strong>Gemma 2B</strong> model. The fine-tuning process leverages the <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/databricks/databricks-dolly-15k">Databricks Dolly 15k dataset</a>, a curated collection of 15,000 high-quality, human-generated prompt-response pairs. This dataset is specifically designed to facilitate fine-tuning for large language models (LLMs), making it an excellent choice for this task.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/12/02/Gemma-2-Tuning/#more" rel="contents">

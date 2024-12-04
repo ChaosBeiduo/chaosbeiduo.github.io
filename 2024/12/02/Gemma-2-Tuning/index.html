@@ -18,15 +18,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Gemma is a family of lightweight, state-of-the-art open models built from research and technology used to create Google Gemini models. Gemma can be further finetuned to suit specific needs.">
+    <meta name="description" content="OverviewGemma is a family of lightweight, state-of-the art open models built from the same research and technology used to create the Gemini models. In this notebook, we demonstrate how to use KerasNL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Gemma-2] Finetuning the Basic Gemma Model Using Lora">
+<meta property="og:title" content="[Gemma-2] Fine-Tune Gemma 2 in Keras Using LoRA">
 <meta property="og:url" content="http://example.com/2024/12/02/Gemma-2-Tuning/index.html">
 <meta property="og:site_name" content="CHAOSLAND">
-<meta property="og:description" content="Gemma is a family of lightweight, state-of-the-art open models built from research and technology used to create Google Gemini models. Gemma can be further finetuned to suit specific needs.">
+<meta property="og:description" content="OverviewGemma is a family of lightweight, state-of-the art open models built from the same research and technology used to create the Gemini models. In this notebook, we demonstrate how to use KerasNL">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-12-02T10:36:51.000Z">
-<meta property="article:modified_time" content="2024-12-03T10:25:18.036Z">
+<meta property="article:modified_time" content="2024-12-04T10:07:49.949Z">
 <meta property="article:author" content="カオスベイド">
 <meta name="twitter:card" content="summary">
 
@@ -35,10 +35,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/12/02/Gemma-2-Tuning/","path":"2024/12/02/Gemma-2-Tuning/","title":"[Gemma-2] Finetuning the Basic Gemma Model Using Lora"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/12/02/Gemma-2-Tuning/","path":"2024/12/02/Gemma-2-Tuning/","title":"[Gemma-2] Fine-Tune Gemma 2 in Keras Using LoRA"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>[Gemma-2] Finetuning the Basic Gemma Model Using Lora | CHAOSLAND</title>
+<title>[Gemma-2] Fine-Tune Gemma 2 in Keras Using LoRA | CHAOSLAND</title>
   
 
 
@@ -111,7 +111,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Preparation"><span class="nav-number">1.</span> <span class="nav-text">Preparation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Set-up-Keras"><span class="nav-number">1.1.</span> <span class="nav-text">Set up Keras</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Select-a-backend"><span class="nav-number">1.2.</span> <span class="nav-text">Select a backend</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prepare-dataset"><span class="nav-number">1.3.</span> <span class="nav-text">Prepare dataset</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Create-a-model"><span class="nav-number">2.</span> <span class="nav-text">Create a model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Inference-before-finetuning"><span class="nav-number">2.1.</span> <span class="nav-text">Inference before finetuning</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Finetuning"><span class="nav-number">3.</span> <span class="nav-text">Finetuning</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Preparation"><span class="nav-number">2.</span> <span class="nav-text">Preparation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-access-to-Gemma"><span class="nav-number">2.1.</span> <span class="nav-text">Get access to Gemma</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-dependencies"><span class="nav-number">2.2.</span> <span class="nav-text">Install dependencies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Select-a-backend"><span class="nav-number">2.3.</span> <span class="nav-text">Select a backend</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Import-packages"><span class="nav-number">2.4.</span> <span class="nav-text">Import packages</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prepare-dataset"><span class="nav-number">3.</span> <span class="nav-text">Prepare dataset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-a-model"><span class="nav-number">4.</span> <span class="nav-text">Create a model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inference-before-finetuning"><span class="nav-number">5.</span> <span class="nav-text">Inference before finetuning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Finetuning"><span class="nav-number">6.</span> <span class="nav-text">Finetuning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Inference-after-fine-tuning"><span class="nav-number">6.1.</span> <span class="nav-text">Inference after fine-tuning</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -186,12 +186,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="[Gemma-2] Finetuning the Basic Gemma Model Using Lora | CHAOSLAND">
+      <meta itemprop="name" content="[Gemma-2] Fine-Tune Gemma 2 in Keras Using LoRA | CHAOSLAND">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [Gemma-2] Finetuning the Basic Gemma Model Using Lora
+          [Gemma-2] Fine-Tune Gemma 2 in Keras Using LoRA
         </h1>
 
         <div class="post-meta-container">
@@ -209,7 +209,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-12-03 18:25:18" itemprop="dateModified" datetime="2024-12-03T18:25:18+08:00">2024-12-03</time>
+      <time title="Modified: 2024-12-04 18:07:49" itemprop="dateModified" datetime="2024-12-04T18:07:49+08:00">2024-12-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -230,20 +230,38 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Gemma is a family of lightweight, state-of-the-art open models built from research and technology used to create Google Gemini models. Gemma can be further finetuned to suit specific needs.</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Gemma is a family of lightweight, state-of-the art open models built from the same research and technology used to create the Gemini models.</p>
+<p>In this notebook, we demonstrate how to use <strong>KerasNLP</strong> to perform <strong>LoRA fine-tuning</strong> on a <strong>Gemma 2B</strong> model. The fine-tuning process leverages the <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/databricks/databricks-dolly-15k">Databricks Dolly 15k dataset</a>, a curated collection of 15,000 high-quality, human-generated prompt-response pairs. This dataset is specifically designed to facilitate fine-tuning for large language models (LLMs), making it an excellent choice for this task.</p>
 <span id="more"></span>
 
-<h1 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h1><h2 id="Set-up-Keras"><a href="#Set-up-Keras" class="headerlink" title="Set up Keras"></a>Set up Keras</h2><p><strong>Keras provides a powerful general-purpose deep learning framework, while <code>keras_nlp</code> focuses on NLP tasks.</strong></p>
+<h2 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h2><h3 id="Get-access-to-Gemma"><a href="#Get-access-to-Gemma" class="headerlink" title="Get access to Gemma"></a>Get access to Gemma</h3><ol>
+<li><p>Request for <a target="_blank" rel="noopener" href="https://www.kaggle.com/models/google/gemma-2">Gemma 2</a></p>
+</li>
+<li><p>Create a Workbook runtime with sufficient resources to run the Gemma 2B model.</p>
+</li>
+<li><p>Better select the T4 GPU Accelerator:</p>
+<ul>
+<li>In the upper-left of the Kaggle window, select <strong>Settings</strong> -&gt; ➡<strong>Accelerator</strong>.</li>
+<li>select <strong>GPU T4 x2</strong> .</li>
+</ul>
+</li>
+</ol>
+<h3 id="Install-dependencies"><a href="#Install-dependencies" class="headerlink" title="Install dependencies"></a>Install dependencies</h3><p>Install Keras, KerasNLP, and other dependencies.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Install Keras 3 last. See https://keras.io/getting_started/ for more details.</span></span><br><span class="line">!pip install -q -U keras-nlp</span><br><span class="line">!pip install -q -U <span class="string">&quot;keras&gt;=3&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Keras provides a powerful general-purpose deep learning framework, while <code>keras_nlp</code> focuses on NLP tasks.</strong></p>
 <p>When working on natural language processing (NLP), choosing the right tools is key. Keras is a high-level API known for its simplicity and flexibility, supporting a wide range of tasks like image recognition and time-series analysis, making it ideal for general-purpose machine learning.</p>
 <p>On the other hand, <code>keras_nlp</code> extends Keras specifically for NLP, offering optimized models, tokenization tools, and preprocessing utilities tailored for text-based tasks. By focusing on NLP, <code>keras_nlp</code> streamlines the process of handling text data and fine-tuning pre-trained models, boosting efficiency for NLP applications.</p>
 <p>Together, these libraries complement each other, allowing developers to leverage Keras’ broad capabilities alongside the specialized features of <code>keras_nlp</code> for language processing.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">import</span> keras_nlp</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Select-a-backend"><a href="#Select-a-backend" class="headerlink" title="Select a backend"></a>Select a backend</h2><p>Keras is a high-level, multi-framework deep learning API designed for simplicity and ease of use. </p>
+<h3 id="Select-a-backend"><a href="#Select-a-backend" class="headerlink" title="Select a backend"></a>Select a backend</h3><p>Keras is a high-level, multi-framework deep learning API designed for simplicity and ease of use. Using Keras 3, you can run workflows on one of three backends: TensorFlow, JAX, or PyTorch.</p>
+<p>For this tutorial, configure the backend for JAX.</p>
 <p><code>XLA_PYTHON_CLIENT_MEM_FRACTION</code>, controls the fraction of GPU memory allocated to the XLA (Accelerated Linear Algebra) backend when running with the JAX backend.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="comment"># Keras 3 lets you choose the backend: TensorFlow, JAX, or PyTorch. </span></span><br><span class="line">os.environ[<span class="string">&quot;KERAS_BACKEND&quot;</span>] = <span class="string">&quot;jax&quot;</span></span><br><span class="line">os.environ[<span class="string">&quot;XLA_PYTHON_CLIENT_MEM_FRACTION&quot;</span>]=<span class="string">&quot;0.9&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment"># Keras 3 lets you choose the backend: TensorFlow, JAX, or PyTorch. </span></span><br><span class="line">os.environ[<span class="string">&quot;KERAS_BACKEND&quot;</span>] = <span class="string">&quot;jax&quot;</span></span><br><span class="line"><span class="comment"># Avoid memory fragmentation on JAX backend.</span></span><br><span class="line">os.environ[<span class="string">&quot;XLA_PYTHON_CLIENT_MEM_FRACTION&quot;</span>]=<span class="string">&quot;1.00&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Import-packages"><a href="#Import-packages" class="headerlink" title="Import packages"></a>Import packages</h3><p>Import Keras and KerasNLP.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">import</span> keras_nlp</span><br></pre></td></tr></table></figure>
 
 
 
@@ -251,36 +269,54 @@
 <ol>
 <li>Load dataset</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datasets <span class="keyword">import</span> load_dataset</span><br><span class="line"></span><br><span class="line">dataset = load_dataset(<span class="string">&quot;facebook/empathetic_dialogues&quot;</span>, trust_remote_code=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(dataset)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datasets <span class="keyword">import</span> load_dataset</span><br><span class="line"></span><br><span class="line">dataset = load_dataset(<span class="string">&quot;fka/awesome-chatgpt-prompts&quot;</span>, trust_remote_code=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(dataset)</span><br></pre></td></tr></table></figure>
 
-<p>The dataset typically comes with three splits: <strong>train</strong>, <strong>test</strong>, and <strong>validation</strong>. For this fine-tuning process, we will focus on the <strong>train</strong> set. </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = dataset[<span class="string">&#x27;train&#x27;</span>]</span><br></pre></td></tr></table></figure>
-
+<blockquote>
+<p>DatasetDict({<br>    train: Dataset({<br>        features: [‘instruction’, ‘context’, ‘response’, ‘category’],<br>        num_rows: 15011<br>    })<br>})</p>
+</blockquote>
+<ol start="2">
+<li>Preprocess the data</li>
+</ol>
 <p>After downloading the dataset, we’ll preprocess it to match the required format.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">filtered_data = []</span><br><span class="line">template = <span class="string">&quot;User:\n&#123;prompt&#125;\nModel:\n&#123;utterance&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> data:</span><br><span class="line">    filtered_data.append(template.<span class="built_in">format</span>(prompt=item[<span class="string">&quot;prompt&quot;</span>], utterance=item[<span class="string">&quot;utterance&quot;</span>]))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(filtered_data[:<span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">data = []</span><br><span class="line">template = <span class="string">&quot;User:\n&#123;prompt&#125;\nModel:\n&#123;response&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> dataset[<span class="string">&#x27;train&#x27;</span>]:</span><br><span class="line">    data.append(template.<span class="built_in">format</span>(prompt=item[<span class="string">&quot;instruction&quot;</span>], response=item[<span class="string">&quot;response&quot;</span>]))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(data[:<span class="number">5</span>])</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>[‘User:\nWhen did Virgin Australia start operating?\nModel:\nVirgin Australia commenced services on 31 August 2000 as Virgin Blue, with two aircraft on a single route.’, ‘User:\nWhich is a species of fish? Tope or Rope\nModel:\nTope’, ‘User:\nWhy can camels survive for long without water?\nModel:\nCamels use the fat in their humps to keep them filled with energy and hydration for long periods of time.’, “User:\nAlice’s parents have three daughters: Amy, Jessy, and what’s the name of the third daughter?\nModel:\nThe name of the third daughter is Alice”, ‘User:\nWhen was Tomoaki Komorida born?\nModel:\nTomoaki Komorida was born on July 10,1981.’]</p>
+</blockquote>
 <p>Truncate our data to speed up training.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filtered_data = filtered_data[:<span class="number">2500</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = data[:<span class="number">2500</span>]</span><br></pre></td></tr></table></figure>
 
 
 
-<h1 id="Create-a-model"><a href="#Create-a-model" class="headerlink" title="Create a model"></a>Create a model</h1><p>KerasNLP provides implementations of many popular model architectures. In this notebook, we’ll create a model using <code>GemmaCausalLM</code>, an end-to-end Gemma model designed for causal language modeling. A causal language model predicts the next token based on previous tokens.</p>
+<h2 id="Create-a-model"><a href="#Create-a-model" class="headerlink" title="Create a model"></a>Create a model</h2><p>KerasNLP provides implementations of many popular model architectures. In this notebook, we’ll create a model using <code>GemmaCausalLM</code>, an end-to-end Gemma model designed for causal language modeling. A causal language model predicts the next token based on previous tokens.</p>
 <p>We’ll use the <code>from_preset</code> method to initialize the model.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gemma_lm = keras_nlp.models.GemmaCausalLM.from_preset(<span class="string">&quot;gemma2_instruct_2b_en&quot;</span>)</span><br><span class="line"></span><br><span class="line">gemma_lm.summary()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gemma_lm = keras_nlp.models.GemmaCausalLM.from_preset(<span class="string">&quot;gemma2_2b_en&quot;</span>)</span><br><span class="line">gemma_lm.summary()</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="Inference-before-finetuning"><a href="#Inference-before-finetuning" class="headerlink" title="Inference before finetuning"></a>Inference before finetuning</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">prompt = <span class="string">&quot;All work and no play makes Jack a dull boy&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(gemma_lm.generate(prompt, max_length=<span class="number">50</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="Inference-before-finetuning"><a href="#Inference-before-finetuning" class="headerlink" title="Inference before finetuning"></a>Inference before finetuning</h2><p>Before we proceed with fine-tuning a language model like Gemma, it’s important to understand how the model generates text with an initial prompt. In this example, we demonstrate how to perform inference using the pre-trained Gemma model before applying any fine-tuning.</p>
+<ol>
+<li><p><strong>Define the Prompt and Response</strong>:<br>We start by setting a prompt to feed into the model. In this case, the prompt is <code>&quot;All work and no play makes Jack a dull boy&quot;</code>, a well-known phrase. The response is initialized as an empty string because we will let the model generate the continuation.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">prompt = template.<span class="built_in">format</span>(</span><br><span class="line">    prompt=<span class="string">&quot;All work and no play makes Jack a dull boy&quot;</span>,</span><br><span class="line">    response=<span class="string">&quot;&quot;</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Sampling Strategy</strong>:<br>We use <code>keras_nlp.samplers.TopKSampler</code> with a parameter <code>k=5</code> to restrict the sampling to the top 5 most probable next words at each step. The <code>seed=2</code> ensures that the randomness of the sampling is reproducible, making the experiment consistent across runs.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sampler = keras_nlp.samplers.TopKSampler(k=<span class="number">5</span>, seed=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Compile the Model</strong>:<br>Next, we compile the Gemma model by passing the sampler to guide the text generation process. The sampler controls how the model picks the next word in the sequence.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gemma_lm.<span class="built_in">compile</span>(sampler=sampler)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Text Generation</strong>:<br>Finally, we use the <code>generate</code> method to generate a text sequence from the prompt. We specify <code>max_length=256</code>, meaning that the model will generate text up to 256 tokens long.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(gemma_lm.generate(prompt, max_length=<span class="number">256</span>))</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>This code demonstrates how we can use a pre-trained model for inference, generating text based on a prompt without any fine-tuning. It sets the stage for further exploration, where fine-tuning on a specific task can improve the model’s performance on related prompts.</p>
+<h2 id="Finetuning"><a href="#Finetuning" class="headerlink" title="Finetuning"></a>Finetuning</h2><p>We will perform finetuning using <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.09685">Low Rank Adaptation</a> (LoRA).</p>
+<p> LoRA is a fine-tuning technique which greatly reduces the number of trainable parameters for downstream tasks by freezing the full weights of the model and inserting a smaller number of new trainable weights into the model. Basically LoRA reparameterizes the larger full weight matrices by 2 smaller low-rank matrices AxB to train and this technique makes training much faster and more memory-efficient.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Enable LoRA for the model and set the LoRA rank to 4.</span></span><br><span class="line">gemma_lm.backbone.enable_lora(rank=<span class="number">4</span>)</span><br><span class="line">gemma_lm.summary()</span><br></pre></td></tr></table></figure>
 
-<p>We are using the base Gemma 2 model, which means it has not been fine-tuned for any particular task. It has been trained to simply guess the next work on a vast amount of source documents.</p>
-<p>Such a model is not yet a good fit for question answering. It will tend to continue predicting likely words, often continuing the question itself instead as if it was a random snippet of a random document on the web. It can easily get stuck in loops of high probability sequences.</p>
-<p>To make it more useful, we can fine-tune on a question answering dataset. In this notebook, we will use Empathetic Dialogues dataset.</p>
-<h1 id="Finetuning"><a href="#Finetuning" class="headerlink" title="Finetuning"></a>Finetuning</h1><p>We will perform finetuning using <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.09685">Low Rank Adaptation</a> (LoRA). LoRA is a fine-tuning technique which greatly reduces the number of trainable parameters for downstream tasks by freezing the full weights of the model and inserting a smaller number of new trainable weights into the model. Basically LoRA reparameterizes the larger full weight matrices by 2 smaller low-rank matrices AxB to train and this technique makes training much faster and more memory-efficient.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Enable LoRA for the model and set the LoRA rank to 4.</span></span><br><span class="line">gemma_lm.backbone.enable_lora(rank=<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
-
-
-
+<p>Note that enabling LoRA reduces the number of trainable parameters significantly (from 2.6 billion to 2.9 million).</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Limit the input sequence length to 256 (to control memory usage).</span></span><br><span class="line">gemma_lm.preprocessor.sequence_length = <span class="number">256</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Use AdamW (a common optimizer for transformer models).</span></span><br><span class="line">optimizer = keras.optimizers.AdamW(</span><br><span class="line">    learning_rate=<span class="number">5e-5</span>,</span><br><span class="line">    weight_decay=<span class="number">0.01</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Exclude layernorm and bias terms from decay.</span></span><br><span class="line">optimizer.exclude_from_weight_decay(var_names=[<span class="string">&quot;bias&quot;</span>, <span class="string">&quot;scale&quot;</span>])</span><br><span class="line"></span><br><span class="line">gemma_lm.<span class="built_in">compile</span>(</span><br><span class="line">    loss=keras.losses.SparseCategoricalCrossentropy(from_logits=<span class="literal">True</span>),</span><br><span class="line">    optimizer=optimizer,</span><br><span class="line">    weighted_metrics=[keras.metrics.SparseCategoricalAccuracy()],</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">gemma_lm.fit(filtered_data, epochs=<span class="number">1</span>, batch_size=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Inference-after-fine-tuning"><a href="#Inference-after-fine-tuning" class="headerlink" title="Inference after fine-tuning"></a>Inference after fine-tuning</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">prompt = template.<span class="built_in">format</span>(</span><br><span class="line">    prompt=<span class="string">&quot;All work and no play makes Jack a dull boy&quot;</span>,</span><br><span class="line">    response=<span class="string">&quot;&quot;</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">sampler = keras_nlp.samplers.TopKSampler(k=<span class="number">5</span>, seed=<span class="number">2</span>)</span><br><span class="line">gemma_lm.<span class="built_in">compile</span>(sampler=sampler)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(gemma_lm.generate(prompt, max_length=<span class="number">256</span>))</span><br></pre></td></tr></table></figure>
 
 
     </div>
