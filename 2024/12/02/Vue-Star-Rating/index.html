@@ -18,27 +18,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Document my own journey like a director.">
+    <meta name="description" content="OverviewTo evaluate an item more intuitively, words alone aren’t sufficient. Adding a star rating system enhances clarity.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue-Star-Rating">
+<meta property="og:title" content="[Vue] Star Rating">
 <meta property="og:url" content="http://example.com/2024/12/02/Vue-Star-Rating/index.html">
 <meta property="og:site_name" content="CHAOSLAND">
-<meta property="og:description" content="Document my own journey like a director.">
+<meta property="og:description" content="OverviewTo evaluate an item more intuitively, words alone aren’t sufficient. Adding a star rating system enhances clarity.">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhV0UVFxLvdFcGg0JAJ_oFoF5jATK5RXCHCTrY8iGXtPsNy9fouH14TGt9YTTs053M62Bx_-fel6SnxvUWuWLFs3-y4O2qkwogoj_LEhXsYmRxdmL-CeAZVERxxOheY8hjcLTq0fR1z_l8/s800/star5.png">
 <meta property="article:published_time" content="2024-12-02T10:32:31.000Z">
-<meta property="article:modified_time" content="2024-12-06T02:47:39.023Z">
+<meta property="article:modified_time" content="2024-12-13T03:06:55.530Z">
 <meta property="article:author" content="カオスベイド">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhV0UVFxLvdFcGg0JAJ_oFoF5jATK5RXCHCTrY8iGXtPsNy9fouH14TGt9YTTs053M62Bx_-fel6SnxvUWuWLFs3-y4O2qkwogoj_LEhXsYmRxdmL-CeAZVERxxOheY8hjcLTq0fR1z_l8/s800/star5.png">
 
 
 <link rel="canonical" href="http://example.com/2024/12/02/Vue-Star-Rating/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/12/02/Vue-Star-Rating/","path":"2024/12/02/Vue-Star-Rating/","title":"Vue-Star-Rating"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/12/02/Vue-Star-Rating/","path":"2024/12/02/Vue-Star-Rating/","title":"[Vue] Star Rating"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Vue-Star-Rating | CHAOSLAND</title>
+<title>[Vue] Star Rating | CHAOSLAND</title>
   
 
 
@@ -98,7 +100,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -111,6 +113,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Structure"><span class="nav-number">2.</span> <span class="nav-text">Structure</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -125,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -156,6 +159,18 @@
     </div>
 
     
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://spinning-wheel-nine.vercel.app/" title="https:&#x2F;&#x2F;spinning-wheel-nine.vercel.app&#x2F;" rel="noopener" target="_blank">Spinning-Wheel</a>
+            </li>
+        </ul>
+      </div>
+    </div>
   </aside>
 
 
@@ -185,12 +200,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Vue-Star-Rating | CHAOSLAND">
+      <meta itemprop="name" content="[Vue] Star Rating | CHAOSLAND">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Vue-Star-Rating
+          [Vue] Star Rating
         </h1>
 
         <div class="post-meta-container">
@@ -208,7 +223,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-12-06 10:47:39" itemprop="dateModified" datetime="2024-12-06T10:47:39+08:00">2024-12-06</time>
+      <time title="Modified: 2024-12-13 11:06:55" itemprop="dateModified" datetime="2024-12-13T11:06:55+08:00">2024-12-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -216,11 +231,11 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front-End</span></a>
+          <a href="/categories/Frontend/" itemprop="url" rel="index"><span itemprop="name">Frontend</span></a>
         </span>
           , 
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Front-End/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+          <a href="/categories/Frontend/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
         </span>
     </span>
 
@@ -233,7 +248,22 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body" itemprop="articleBody"><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>To evaluate an item more intuitively, words alone aren’t sufficient. Adding a star rating system enhances clarity.</p>
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhV0UVFxLvdFcGg0JAJ_oFoF5jATK5RXCHCTrY8iGXtPsNy9fouH14TGt9YTTs053M62Bx_-fel6SnxvUWuWLFs3-y4O2qkwogoj_LEhXsYmRxdmL-CeAZVERxxOheY8hjcLTq0fR1z_l8/s800/star5.png" style="zoom:50%;" />
+
+<span id="more"></span>
+
+
+
+<h2 id="Structure"><a href="#Structure" class="headerlink" title="Structure"></a>Structure</h2><p>The rating component consists of three types of stars: empty, half, and full. These can be easily found on <a target="_blank" rel="noopener" href="https://fontawesome.com/icons/star?f=classic&s=solid&sz=sm&pc=%23FFD43B&sc=%23FFD43B">Font Awesome</a>.</p>
+<div style="display: flex; height: 48px; width:162px; margin: 0 auto;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#FFD43B" d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#FFD43B" d="M288 0c-12.2 .1-23.3 7-28.6 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3L288 439.8 288 0zM429.9 512c1.1 .1 2.1 .1 3.2 0l-3.2 0z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#FFD43B" d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z"/></svg>
+</div>
+
+<p>The goal is to input a number (from 0 to 5) and display the corresponding stars.</p>
+
     </div>
 
     
